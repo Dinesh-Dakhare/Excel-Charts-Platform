@@ -1,5 +1,4 @@
 import express from 'express'
-import bcrypt from 'bcrypt'
 import connectDb from './db/db.js'
 import cors from 'cors'
 import { config } from 'dotenv'
