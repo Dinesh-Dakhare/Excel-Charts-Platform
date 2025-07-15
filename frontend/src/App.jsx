@@ -1,13 +1,25 @@
+import { StrictMode } from 'react'
+import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client'
+import Account from './landing_page/Account'
+import SignUp from './landing_page/SignUp'
+import './landing_page/Account.css'
 
-import './App.css'
+import './index.css'
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+
 
 function App() {
 
 
   return (
-    <>
-     <h1 className='text-9xl flex justify-center items-center h-screen'>hello world</h1>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Account />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
