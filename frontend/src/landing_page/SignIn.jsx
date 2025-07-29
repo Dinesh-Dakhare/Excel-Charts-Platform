@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Account.css';
 
 function SignIn({ toggleForm }) {
     const [loginInfo, setLoginInfo] = useState({ email: '', password: '' });
+    const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         setLoginInfo({ ...loginInfo, [e.target.name]: e.target.value });
@@ -11,12 +13,12 @@ function SignIn({ toggleForm }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoginInfo({ email: '', password: '' });
+        navigate('/dashboard');
     };
 
     return (
         <div className="auth-box glass">
             <h2 className="form-title">Sign In</h2>
-
 
             <form onSubmit={handleSubmit}>
                 <div className="input-icon-wrapper">
@@ -32,7 +34,7 @@ function SignIn({ toggleForm }) {
                 </div>
 
                 <div className="input-icon-wrapper">
-                    <i class="fa-solid fa-lock"></i>
+                    <i className="fa-solid fa-lock"></i>
                     <input
                         type="password"
                         name="password"
@@ -44,8 +46,7 @@ function SignIn({ toggleForm }) {
                 </div>
 
                 <a href="#" className="forgot">Forgot Password?</a>
-
-                <button className="submit-btn">Sign In</button>
+                <button type="submit" className="submit-btn">Sign In</button>
             </form>
 
             <p className="switch-form">

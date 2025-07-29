@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Account.css';
 
 function SignUp({ toggleForm }) {
     const [signUpInfo, setSignUpInfo] = useState({
         name: '', email: '', password: '', confirmPass: ''
     });
+    const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         setSignUpInfo({ ...signUpInfo, [e.target.name]: e.target.value });
@@ -13,13 +15,12 @@ function SignUp({ toggleForm }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         setSignUpInfo({ name: '', email: '', password: '', confirmPass: '' });
-        toggleForm();
+        navigate('/dashboard');
     };
 
     return (
         <div className="auth-box glass">
             <h2>Create Account</h2>
-
 
             <form onSubmit={handleSubmit}>
                 <div className="input-icon-wrapper">
@@ -47,7 +48,7 @@ function SignUp({ toggleForm }) {
                 </div>
 
                 <div className="input-icon-wrapper">
-                    <i class="fa-solid fa-lock"></i>
+                    <i className="fa-solid fa-lock"></i>
                     <input
                         type="password"
                         name="password"
@@ -59,7 +60,7 @@ function SignUp({ toggleForm }) {
                 </div>
 
                 <div className="input-icon-wrapper">
-                    <i class="fa-solid fa-unlock"></i>
+                    <i className="fa-solid fa-unlock"></i>
                     <input
                         type="password"
                         name="confirmPass"
@@ -70,7 +71,7 @@ function SignUp({ toggleForm }) {
                     />
                 </div>
 
-                <button className="submit-btn">Sign Up</button>
+                <button type="submit" className="submit-btn">Sign Up</button>
             </form>
 
             <p className="switch-form">
@@ -88,11 +89,9 @@ function SignUp({ toggleForm }) {
                     <img src="media/images/appleLogo.jpg" alt="Apple" />
                     CONTINUE WITH APPLE
                 </button>
-                
             </div>
         </div>
     );
 }
-
 
 export default SignUp;
