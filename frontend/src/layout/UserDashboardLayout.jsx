@@ -1,0 +1,29 @@
+import React from 'react'
+import NavBar from '../components/NavBar.jsx'
+import { FaBarsStaggered } from 'react-icons/fa6'
+import { useState } from 'react'
+import UploadDoc from '../pages/UploadDoc.jsx'
+import { Outlet } from 'react-router-dom'
+
+const UserDashboardLayout = () => {
+  const [openNav, setOpenNav] = useState(true)
+
+  return (
+    <div className='w-screen h-screen '>
+      <div
+        className={`md:hidden p-4 ${
+          openNav ? 'hidden' : 'block'
+        } ease-in-out duration-300} cursor-pointer`}
+        onClick={() => setOpenNav(!openNav)}
+      >
+        <FaBarsStaggered />
+      </div>
+      <NavBar openNav={openNav} setOpenNav={setOpenNav} />
+      <main className='overflow-x-hidden bg-gradient-to-br from-gray-50 via-white to-gray-100  '>
+        <Outlet />
+      </main>
+    </div>
+  )
+}
+
+export default UserDashboardLayout

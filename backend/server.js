@@ -1,18 +1,23 @@
 import express from 'express'
 import connectDb from './db/db.js'
 import cors from 'cors'
+import path from "path";
+import { fileURLToPath } from "url";
 import { config } from 'dotenv'
 import router from './routes/authRoutes.js'
+import charts from './routes/chartRoutes.js'
 config()
 
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express()
 
 // Middleware
 app.use(express.json());
 app.use(cors());
+app.use("/uploads", express.static(path.join(__dirname, "/uploads"))); 
 app.use('/api/v1/auth',router)
-
+app.use('/api/v1/chart',charts)
 
 // MongoDB connection
 connectDb()
