@@ -33,6 +33,7 @@ const userSchema = new mongoose.Schema(
       default: 'user',
     },
     profileImage: { type: String },
+     profileImageUrl: { type: String },   
     charts: [
       {
         type: mongoose.Schema.Types.ObjectId,

@@ -42,6 +42,10 @@ export const ChartRender = ({
 }) => {
   let barLength = chartData.length
   const { bgColors, borderColors } = generateRandomColors(barLength)
+console.log("chart-labels",chartLabels);
+console.log("chart-data",chartData);
+console.log("chart-xfield",xField);
+console.log("chart-yfield",yField);
 
   
   const data = {

@@ -52,6 +52,8 @@ export const loginUser = async (req, res, next) => {
         username: user.username,
         email: user.email,
         role: user.role,
+        profileImageUrl:user.profileImageUrl,
+        profileImage:user.profileImage
       },
     })
   } catch (error) {
@@ -86,21 +88,20 @@ export const passwordChange = async (req, res) => {
 
 export const uploadImg =async(req, res)=>{
   try {
-    console.log("hi!");
+   
     
-//   const userId = req.user.id
+  const userId = req.user.id
+   const baseUrl = process.env.BASE_URL || "http://localhost:5000"; // set in .env in prod
     const profileImage = req.file ? req.file.filename : null;
-console.log(profileImage);
+const profileImageUrl = `${baseUrl}/uploads/${profileImage}`;
 
-//    const user = await User.findById(userId)
-//     if (!user) {
-//       return res.status(400).json({ message: 'User not found' })
-//     }
-//     user.profileImage = profileImage
-
-//     await user.save();
-
-//     res.status(201).json({ message: "User created successfully", user });
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { profileImage: profileImage, profileImageUrl },
+      { new: true }
+    );
+       if (!user) return res.status(404).json({ message: "User not found" });
+    res.status(200).json({ message: "Image uploaded" ,profileImageUrl:profileImageUrl});
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });

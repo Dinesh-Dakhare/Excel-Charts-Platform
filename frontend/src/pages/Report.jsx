@@ -62,7 +62,7 @@ const Report = () => {
     }
   }
 
-  const downloadPNG = () => {
+  const downloadPNG = async () => {
     const chart = chartRef.current
     const canvas = chart.canvas
 
@@ -84,6 +84,22 @@ const Report = () => {
     link.href = tempCanvas.toDataURL('image/png', 1.0)
     link.download = `${fileName}.png`
     link.click()
+    try {
+      const res = await axios.patch(
+        'http://localhost:5000/api/v1/chart/download',{},
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }) 
+        if(res.status === 200){
+          console.log(res.data)
+        }
+    } catch (error) {
+      console.log(error);
+      
+    }
   }
 
   const downloadPDF = () => {
@@ -120,6 +136,7 @@ const Report = () => {
 
   // Save
   pdf.save(`${fileName}.pdf`);
+  
   }
 
   return (

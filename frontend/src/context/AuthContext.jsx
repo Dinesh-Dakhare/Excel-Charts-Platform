@@ -18,7 +18,7 @@ console.log(
     localStorage.setItem("role", user.role);
     setToken(token);
     setRole(user.role);
-    setUser(user)
+    setUser({...user,profileImageUrl:user.profileImageUrl})
   };
 
   const logout = () => {

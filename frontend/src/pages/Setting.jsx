@@ -13,13 +13,14 @@ import {
   FiCheck,
   FiX,
 } from 'react-icons/fi'
+import { FaRegUser } from "react-icons/fa";
 import { AuthContext } from '../context/AuthContext.jsx'
 import axios from 'axios'
 
 export const Setting = () => {
-  const { user } = useContext(AuthContext)
+  const { user,setUser} = useContext(AuthContext)
+console.log(user?.profileImage);
 
-  const [profileImage, setProfileImage] = useState(null)
   const [showCurrentPassword, setShowCurrentPassword] = useState(false)
   const [showNewPassword, setShowNewPassword] = useState(false)
 
@@ -56,9 +57,7 @@ export const Setting = () => {
         }
       )
       if (res.status === 200) {
-        console.log(res.data)
-        setProfileImage(res.data)
-        localStorage.setItem('profileImage', res.data)
+setUser({...user,profileImageUrl:res.data.profileImageUrl})
         alert('Profile image updated successfully!')
       }
     } catch (error) {
@@ -177,20 +176,14 @@ export const Setting = () => {
                   <div className='flex items-center space-x-6'>
                     <div className='relative'>
                       <div className='w-24 h-24 rounded-full overflow-hidden bg-gray-100 border-4 border-white shadow-lg'>
-                        {profileImage ? (
-                          <img
-                            src={profileImage}
-                            alt='Profile'
-                            className='w-full h-full object-cover'
-                          />
-                        ) : (
-                          <div className='w-full h-full flex items-center justify-center bg-gradient-to-br from-teal-400 to-teal-600'>
-                            {/* <span className='text-2xl font-bold text-white'>
-                              {profileData.firstName.charAt(0)}
-                              {profileData.lastName.charAt(0)}
-                            </span> */}
-                          </div>
-                        )}
+                      {user && user.profileImageUrl && ( 
+                        <img
+                          src={user.profileImageUrl}
+                          alt='Profile'
+                          className='w-full h-full object-cover'
+                        />
+                     )} 
+                      <span className='flex items-center justify-center w-full h-full text-gray-400'><FaRegUser /></span>
                       </div>
 
                       <button
@@ -234,7 +227,7 @@ export const Setting = () => {
                       <input
                         disabled
                         type='text'
-                        value={profileData.firstName}
+                        value={profileData?.firstName}
                         onChange={(e) =>
                           handleInputChange('firstName', e.target.value)
                         }

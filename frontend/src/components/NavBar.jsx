@@ -1,18 +1,22 @@
 import React, { useContext } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { AiFillHome } from 'react-icons/ai'
 import { FaUpload } from 'react-icons/fa'
 import { IoSettings } from 'react-icons/io5'
 import { FaHistory, FaChartBar } from 'react-icons/fa'
 import { FaSignOutAlt } from 'react-icons/fa'
 import { ImCross } from 'react-icons/im'
-import { IoMdHelp } from 'react-icons/io'
-import { useState } from 'react'
-import { FaBarsStaggered } from 'react-icons/fa6'
+        
 import { AuthContext } from '../context/AuthContext'
+import { FaRegUser } from "react-icons/fa";
 const NavBar = ({ openNav, setOpenNav }) => {
   const location = useLocation()
-  const { user } = useContext(AuthContext)
+  const navigate = useNavigate()
+  const { user,logout } = useContext(AuthContext)
+  const handleSignout=async()=>{
+    logout()
+navigate('/login')
+  }
   return (
     <div
       className={`z-50 fixed top-0 left-0 w-64 h-screen bg-white/70 backdrop-blur-sm p-4  ${
@@ -143,17 +147,23 @@ const NavBar = ({ openNav, setOpenNav }) => {
         </ul>
         <div className='space-y-2 text-sm fixed bottom-5'>
           <div className='flex items-center gap-3 px-2 py-1 text-gray-600 hover:text-gray-900 cursor-pointer '>
-            <img
-              src='https://api.dicebear.com/6.x/bottts/svg?seed=Acme'
-              alt='User'
-              className='size-10 rounded-full'
-            />
+              {user && user.profileImageUrl? ( 
+                                  <img
+                                    src={user.profileImageUrl}
+                                    alt='Profile'
+                                    className='size-10 rounded-full'
+                                  />
+                               ):
+                               
+                                <span className='flex items-center justify-center w-full h-full text-gray-400'><FaRegUser /></span>
+                               } 
             <div>
               <p className=' font-medium text-gray-900 text-lg p-0 m-0'>
                 {user?.username}
               </p>
               <p className='text-sm text-gray-500 p-0 m-0'>{user?.email}</p>
             </div>
+            <span className='hover:scale-110 ' onClick={handleSignout}><FaSignOutAlt /></span>
           </div>
         </div>
       </div>

@@ -1,12 +1,4 @@
-// import React from 'react'
 
-// const Home = () => {
-//   return (
-//     <div>Home</div>
-//   )
-// }
-
-// export default Home
 import React, { useState } from 'react'
 import { useContext } from 'react'
 import {
@@ -18,6 +10,7 @@ import {
   FaArrowRight,
   FaCloudDownloadAlt,
   FaShieldAlt,
+  FaSignOutAlt,
 } from 'react-icons/fa'
 import { FaBarsStaggered } from 'react-icons/fa6'
 import { GoZap } from 'react-icons/go'
@@ -25,13 +18,16 @@ import { IoMdTrendingUp } from 'react-icons/io'
 import { NavLink } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 import NavBar from '../components/NavBar'
+import { div } from 'three/tsl'
 
 export default function Home() {
   const token = localStorage.getItem('token')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  // const [isHovered, setIsHovered] = useState(null);
-  // const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  const { user,logout } = useContext(AuthContext)
+    const handleSignout=async()=>{
+    logout()
+navigate('/login')
+  }
   return (
     <div className='min-h-screen bg-gray-50'>
       {/* Header */}
@@ -56,16 +52,19 @@ export default function Home() {
                 Get Started
               </NavLink>
                {token ? (
+                <div className='space-x-4 flex items-center'>
                  <NavLink
                 to={'/dashboard/user'}
                 className='flex items-center gap-3 px-2 py-1 text-gray-600 hover:text-gray-900 cursor-pointer '
               >
                 <img
-                  src='https://api.dicebear.com/6.x/bottts/svg?seed=Acme'
+                  src={user?.profileImageUrl}
                   alt='User'
-                  className='size-10 rounded-full'
+                  className='size-10 rounded-full hover:opacity-50 transition-opacity '
                 />
               </NavLink>
+                          <div className='hover:scale-110 text-black cursor-pointer ' onClick={handleSignout}><FaSignOutAlt /></div>
+                </div>
               ) : (
                 <NavLink
                   to={'/login'}

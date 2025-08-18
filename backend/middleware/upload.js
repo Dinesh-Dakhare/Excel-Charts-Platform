@@ -4,7 +4,7 @@ import path from "path";
 // Storage config
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "../frontend/public/img"); // Folder where images will be stored
+    cb(null, "./uploads"); // Folder where images will be stored
   },
   filename: function (req, file, cb) {
     cb(

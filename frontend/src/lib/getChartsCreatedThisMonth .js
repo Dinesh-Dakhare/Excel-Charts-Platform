@@ -2,7 +2,7 @@ export const getChartsCreatedThisMonth = (userData) => {
 
     if(!userData) return 0
   const charts = userData?.user?.charts;
-  console.log(charts);
+ 
   
   const currentMonth = new Date().getMonth() + 1;
   const currentYear = new Date().getFullYear();

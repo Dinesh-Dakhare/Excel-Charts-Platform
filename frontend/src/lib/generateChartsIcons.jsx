@@ -10,7 +10,7 @@
     FaCloud,
   } from 'react-icons/fa'
  export const generateChartsIcons = (type) => {
-    console.log(type)
+    
 
     switch (type) {
       case 'bar':
