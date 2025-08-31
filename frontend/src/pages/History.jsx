@@ -90,7 +90,7 @@ const History = () => {
   }, [page, limit, debouncedSearch, filterType])
 
   return (
-    <div className='ml-64 '>
+    <div className='lg:ml-64 '>
       {!loading ? (
         <div className='min-h-screen '>
           {/* Main Content */}
@@ -106,58 +106,7 @@ const History = () => {
               </p>
             </div>
 
-            {/* Stats Cards */}
-            {/* <div className='grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8'>
-              <div className='bg-white/70 backdrop-blur-sm rounded-xl shadow-md border border-white/20 p-6'>
-                <div className=' flex items-center justify-between'>
-                  <div>
-                    <p className='text-sm text-gray-500 mb-1'>Total Charts</p>
-                    <p className='text-xl sm:text-2xl font-bold text-gray-900'>
-                      {files?.totalCharts}
-                    </p>
-                  </div>
-                  <FaChartBar className='w-8 h-8 text-blue-600' />
-                </div>
-              </div>
-
-              <div className='bg-white/70 backdrop-blur-sm rounded-xl shadow-md border border-white/20 p-6'>
-                <div className='flex items-center justify-between'>
-                  <div>
-                    <p className='text-sm text-gray-500 mb-1'>
-                      Total Downloads
-                    </p>
-                    <p className='text-xl sm:text-2xl font-bold text-gray-900'>
-                      {files?.downloads}
-                    </p>
-                  </div>
-                  <FaDownload className='w-8 h-8 text-green-600' />
-                </div>
-              </div>
-
-              <div className='bg-white/70 backdrop-blur-sm rounded-xl shadow-md border border-white/20 p-6'>
-                <div className='flex items-center justify-between'>
-                  <div>
-                    <p className='text-sm text-gray-500 mb-1'>This Month</p>
-                    <p className='text-xl sm:text-2xl font-bold text-gray-900'>
-                      12
-                    </p>
-                  </div>
-                  <FaCalendarAlt className='w-8 h-8 text-purple-600' />
-                </div>
-              </div>
-
-              <div className='bg-white/70 backdrop-blur-sm rounded-xl shadow-md border border-white/20 p-6'>
-                <div className='flex items-center justify-between'>
-                  <div>
-                    <p className='text-sm text-gray-500 mb-1'>Storage Used</p>
-                    <p className='text-xl sm:text-2xl font-bold text-gray-900'>
-                      {calculateStorageUsed(files.charts)}
-                    </p>
-                  </div>
-                  <FaFileExcel className='w-8 h-8 text-orange-600' />
-                </div>
-              </div>
-            </div> */}
+     
 
             {/* Filters and Search */}
             <div className='bg-white/70 backdrop-blur-sm rounded-xl shadow-md  border-white/20 p-4 sm:p-6 mb-6'>
@@ -195,7 +144,7 @@ const History = () => {
             {/* Charts Table */}
             <div className='bg-white/70 backdrop-blur-sm rounded-xl shadow-md  border-white/20  mb-6 overflow-hidden'>
               {/* Desktop Table */}
-              <div className='hidden lg:block overflow-x-auto'>
+              <div className=' lg:block overflow-x-auto'>
                 <table className='w-full'>
                   <thead className='bg-gray-50 border-b'>
                     <tr>
@@ -232,7 +181,7 @@ const History = () => {
                         <td className='p-4'>
                           <div className='flex items-center gap-3'>
                             <div
-                              className={`size-10 rounded-lg flex items-center justify-center text-white`}
+                              className={`max-md:hidden size-10 rounded-lg flex items-center justify-center text-white`}
                             >
                               {generateChartsIcons(chart.chartType)}
                             </div>
@@ -251,7 +200,7 @@ const History = () => {
                             {chart.chartType}
                           </span>
                         </td>
-                        <td className='p-4 text-gray-600'>
+                        <td className=' p-4 text-gray-600'>
                           {formatDate(chart.uploadedAt)}
                         </td>
                         <td className='p-4 text-gray-600'>

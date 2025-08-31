@@ -90,7 +90,7 @@ console.log("chart-yfield",yField);
   }
 
   return (
-    <div className='w-[60rem] h-[40rem] shadow rounded-xl flex items-center justify-center'>
+    <div className='w-full max-w-[60rem]  h-[20rem] sm:h-[25rem] md:h-[30rem] lg:h-[35rem] xl:h-[40rem] shadow rounded-xl flex items-center justify-center'>
       <Chart
       ref={ref}
         key={`${chartType}-${xField}-${yField}`}

@@ -140,7 +140,7 @@ const Report = () => {
   }
 
   return (
-    <div className='ml-65 p-4 mt-10 overflow-x-hidden '>
+    <div className='lg:ml-65 p-4 mt-10 overflow-x-hidden '>
       {/* filename */}
       <div>
         <ul className='text-xl '>
@@ -150,7 +150,7 @@ const Report = () => {
       </div>
       {/* chart_configuration */}
       <div className='flex items-center justify-center mt-20'>
-        <div className='shadow p-6 w-[60rem] space-y-5 rounded-lg'>
+        <div className='shadow p-6 max-w-[60rem] w-full space-y-5 rounded-lg'>
           <div className='flex items-center  gap-2 text-2xl font-medium'>
             <IoMdSettings />
             Chart Configuration
@@ -224,13 +224,13 @@ const Report = () => {
               </select>
             </div>
           </div>
-          <div className='flex justify-between gap-2 mt-4'>
+          <div className='flex sm:flex-row flex-col justify-between gap-2 mt-4'>
             <div>
               <button
                 onClick={generateChart}
                 className='px-4 py-2 bg-blue-500 text-white rounded font-medium flex items-center gap-2'
               >
-                <IoBarChartSharp />
+                <IoBarChartSharp className='max-md:hidden' />
                 Generate Chart
               </button>
             </div>
@@ -255,7 +255,7 @@ const Report = () => {
         <ExcelDataTable data={excelData} />
       </div>
       {/* chart render  */}
-      <div className='flex items-center justify-center mt-20 '>
+      <div className='flex items-center justify-center mt-20 w-full'>
         <ChartRender
           ref={chartRef}
           chartTitle={chartTitle}

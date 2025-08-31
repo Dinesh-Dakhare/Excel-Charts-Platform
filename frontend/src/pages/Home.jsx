@@ -23,7 +23,7 @@ import { div } from 'three/tsl'
 export default function Home() {
   const token = localStorage.getItem('token')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const { user,logout } = useContext(AuthContext)
+  const { user,logout,role } = useContext(AuthContext)
     const handleSignout=async()=>{
     logout()
 navigate('/login')
@@ -54,14 +54,27 @@ navigate('/login')
                {token ? (
                 <div className='space-x-4 flex items-center'>
                  <NavLink
-                to={'/dashboard/user'}
+                to={role === 'admin' ? '/admin/dashboard' : '/dashboard/user'}
                 className='flex items-center gap-3 px-2 py-1 text-gray-600 hover:text-gray-900 cursor-pointer '
               >
-                <img
+                {/* <img
                   src={user?.profileImageUrl}
                   alt='User'
                   className='size-10 rounded-full hover:opacity-50 transition-opacity '
-                />
+                /> */}
+                <div className='border-2 border-gray-300 rounded-full w-10 h-10'>
+                  
+                {user && user.profileImageUrl? ( 
+                                                  <img
+                                                    src={user.profileImageUrl}
+                                                    alt='Profile'
+                                                    className='size-10 rounded-full'
+                                                  />
+                                               ):
+                                               
+                                                <span className='flex items-center justify-center w-full h-full text-gray-400'><FaRegUser /></span>
+                                               } 
+                </div>
               </NavLink>
                           <div className='hover:scale-110 text-black cursor-pointer ' onClick={handleSignout}><FaSignOutAlt /></div>
                 </div>
@@ -105,13 +118,13 @@ navigate('/login')
                   Start Converting Now
                   <FaArrowRight className='inline ml-2 h-5 w-5' />
                 </NavLink>
-                <button className='border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg text-lg font-semibold hover:border-teal-600 hover:text-teal-600 transition-colors'>
+                <button className='hover:scale-105 transition-all duration-300 ease-in-out delay-50 border-2 border-gray-300 text-gray-700 px-8 py-4 rounded text-lg font-semibold hover:border-teal-600 hover:text-teal-600 transition-colors'>
                   Watch Demo
                 </button>
               </div>
             </div>
             <div className='relative'>
-              <div className='bg-white rounded-2xl shadow-2xl p-8'>
+              <div className='bg-white rounded-2xl shadow-md hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-lg p-8'>
                 <div className='flex items-center justify-between mb-6'>
                   <h3 className='text-lg font-semibold text-gray-900'>
                     Revenue Analytics
@@ -362,11 +375,11 @@ navigate('/login')
           <div className='flex flex-col sm:flex-row gap-4 justify-center'>
             <NavLink
               to={'/dashboard/upload'}
-              className='text-decoration-none bg-white !text-teal-600 px-8 py-4 rounded text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg'
+              className='text-decoration-none bg-white !text-teal-600 px-8 py-4 rounded text-lg font-semibold hover:bg-gray-100 shadow-lg hover:scale-105 transition-all duration-300 delay-50 ease-in-out'
             >
               Start Free Trial
             </NavLink>
-            <button className='border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-teal-600 transition-colors'>
+            <button className=' border-2 border-white text-white px-8 py-4 rounded text-lg font-semibold hover:scale-105 hover:text-slate-600 transition-all duration-300 delay-50 ease-in-out '>
               Contact Sales
             </button>
           </div>

@@ -16,14 +16,14 @@ import {
 import { FaRegUser } from "react-icons/fa";
 import { AuthContext } from '../context/AuthContext.jsx'
 import axios from 'axios'
-
+import {Loader} from '../components/Loader.jsx'
 export const Setting = () => {
   const { user,setUser} = useContext(AuthContext)
-console.log(user?.profileImage);
+
 
   const [showCurrentPassword, setShowCurrentPassword] = useState(false)
   const [showNewPassword, setShowNewPassword] = useState(false)
-
+const[loading,setLoading]=useState(true)
   const [isSaving, setIsSaving] = useState(false)
   const [successMessage, setSuccessMessage] = useState('')
 
@@ -144,11 +144,18 @@ setUser({...user,profileImageUrl:res.data.profileImageUrl})
         firstName: user.username,
         email: user.email, // assuming user object has an email
       })
+      setLoading(false)
     }
   }, [user])
 
   return (
-    <div className='min-h-screen ml-64 flex items-center justify-center '>
+    <div className='min-h-screen lg:ml-64 flex items-center justify-center '>
+      {
+        loading?(
+          <Loader/>
+        ):(
+user &&(
+
       <div className=' mx-auto p-6  w-full '>
         {/* Header */}
         <div className='flex items-center justify-between mb-8'>
@@ -345,6 +352,9 @@ setUser({...user,profileImageUrl:res.data.profileImageUrl})
           </div>
         </div>
       </div>
+)
+        )
+      }
     </div>
   )
 }

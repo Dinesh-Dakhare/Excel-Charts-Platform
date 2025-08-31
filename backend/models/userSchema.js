@@ -1,6 +1,7 @@
-import mongoose from 'mongoose'
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
+import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import crypto from "crypto";
 const userSchema = new mongoose.Schema(
   {
     username: {
@@ -19,7 +20,7 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       match: [
         /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-        'Please enter a valid email',
+        "Please enter a valid email",
       ],
     },
     password: {
@@ -29,15 +30,15 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['user', 'admin'],
-      default: 'user',
+      enum: ["user", "admin"],
+      default: "user",
     },
     profileImage: { type: String },
-     profileImageUrl: { type: String },   
+    profileImageUrl: { type: String },
     charts: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Chart', // ✅ connect to user's chart history
+        ref: "Chart", // ✅ connect to user's chart history
       },
     ],
     downloads: {
@@ -48,6 +49,12 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+      passwordResetToken: {
+    type: String,
+  },
+  passwordResetExpires: {
+    type: Date,
+  },
     isActive: {
       type: Boolean,
       default: true,
@@ -58,26 +65,29 @@ const userSchema = new mongoose.Schema(
     },
   },
   { timestamps: true }
-)
+);
 
 // Hash password before saving
-userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next()
-  this.password = await bcrypt.hash(this.password, 12)
-  next()
-})
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  this.password = await bcrypt.hash(this.password, 12);
+  next();
+});
 
 // Compare password method
 userSchema.methods.comparePassword = async function (candidatePassword) {
-  return await bcrypt.compare(candidatePassword, this.password)
-}
+  return await bcrypt.compare(candidatePassword, this.password);
+};
 
 userSchema.methods.generateToken = async function () {
   return jwt.sign(
     { id: this._id, role: this.role, username: this.username },
-    process.env.JWT_SECRET || 'your-secret-key',
-    { expiresIn: '24h' }
-  )
-}
-
-export const User = mongoose.model('User', userSchema)
+    process.env.JWT_SECRET || "your-secret-key",
+    { expiresIn: "24h" }
+  );
+};
+userSchema.methods.generatePasswordResetToken = function () {
+  this.passwordResetToken = crypto.randomBytes(20).toString('hex');
+  this.passwordResetExpires = Date.now() + 3600000; // expires in 1 hour
+};
+export const User = mongoose.model("User", userSchema);

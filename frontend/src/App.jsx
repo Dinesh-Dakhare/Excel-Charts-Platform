@@ -11,7 +11,11 @@ import AuthPage from './pages/AuthPage.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'
 import ChartPreview from './pages/ChartPreview.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
-
+import AdminDashboardLayout from './layout/AdminDashboardLayout.jsx'
+import AdminDashboard from './pages/AdminDashboard.jsx'
+import UserList from './pages/UserList.jsx'
+import AdminChartPreview from './pages/AdminChartPreview.jsx'
+import ForgetPasswordPage from './pages/ForgetPasswordPage.jsx'
 // Pass history to the layout
 const DashboardLayout = ({
   openSidebarToggle,
@@ -42,7 +46,8 @@ const AppWrapper = () => {
       <Route path='/' element={<Home />} />
       <Route path='/login' element={<AuthPage mode='login' />} />
       <Route path='/register' element={<AuthPage mode='register' />} />
-
+      <Route path='/forget-password' element={<ForgetPasswordPage mode='forget-password'/>} />
+      <Route path='/reset-password' element={<ForgetPasswordPage mode='reset-password'/>} />
       <Route
         path='/dashboard'
         element={
@@ -59,6 +64,19 @@ const AppWrapper = () => {
 
         <Route path='/dashboard/user' element={<Dashboard />} />
         <Route path='/dashboard/report' element={<Report />} />
+      </Route>
+
+         <Route
+        path='/admin'
+        element={
+        
+            <AdminDashboardLayout />
+          
+        }
+      >
+        <Route path='/admin/dashboard' element={<AdminDashboard />} />
+        <Route path='/admin/report/:id' element={<AdminChartPreview />} />
+        <Route path='/admin/report' element={<UserList />} />
       </Route>
     </Routes>
   )

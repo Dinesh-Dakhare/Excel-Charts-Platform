@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useContext, useState } from 'react'
+  import { ToastContainer, toast } from 'react-toastify';
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
@@ -45,8 +46,12 @@ const AuthPage = ({ mode }) => {
           }
         )
         if (res.status === 200) {
+          console.log(res.data.message)
+          toast.success(res.data.message)
           login(res.data.token, res.data.user)
-          navigate('/')
+          setTimeout(() => {
+            navigate('/')
+          },2000)
         }
       } catch (error) {
         console.log(error)
@@ -63,9 +68,11 @@ const AuthPage = ({ mode }) => {
         )
         if (res.status === 201) {
           console.log(res.data)
+          toast.success(res.data.message)
           setIsLogin(true)
         }
       } catch (error) {
+        toast.error(error)
         console.log(error)
       }
     }
@@ -339,6 +346,7 @@ const AuthPage = ({ mode }) => {
           )}
         </div>
       </div>
+      <ToastContainer/>
     </div>
   )
 }

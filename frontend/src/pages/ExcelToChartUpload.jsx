@@ -124,8 +124,8 @@ export default function ExcelToChartUpload() {
 
 
   return (
-    <div className='min-h-screen bg-white/30 backdrop-blur-lg ml-64  mt-10 flex flex-col items-center '>
-      <div className='space-y-6 size-[55rem]'>
+    <div className='min-h-screen bg-white/30 backdrop-blur-lg lg:ml-64  mt-10 flex flex-col items-center'>
+      <div className='space-y-6 lg:size-[55rem] p-4'>
         <div className='text-center'>
           <h3 className='text-2xl sm:text-3xl font-bold text-gray-900 mb-2'>
             Upload Excel File
@@ -155,16 +155,16 @@ export default function ExcelToChartUpload() {
             className='absolute inset-0 w-full h-full opacity-0 cursor-pointer'
           />
 
-          <FaCloudUploadAlt className='w-16 h-16 text-gray-400 mx-auto mb-4' />
-          <h3 className='text-xl font-medium text-gray-900 mb-2'>
+          <FaCloudUploadAlt className='size-16 text-gray-400 mx-auto mb-4' />
+          <p className='text-md lg:text-2xl font-medium text-gray-900 mb-2'>
             {dragActive
               ? 'Drop your Excel file here'
               : 'Drag & drop your Excel file here'}
-          </h3>
+          </p>
           <p className='text-gray-600 mb-4'>or</p>
           <button
             onClick={() => fileInputRef.current?.click()}
-            className='bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors inline-flex items-center gap-2'
+            className='bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition-colors inline-flex items-center gap-2'
           >
             <FaUpload className='w-4 h-4' />
             Browse File

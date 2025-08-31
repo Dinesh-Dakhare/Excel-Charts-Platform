@@ -12,7 +12,7 @@ import { FaRegUser } from "react-icons/fa";
 const NavBar = ({ openNav, setOpenNav }) => {
   const location = useLocation()
   const navigate = useNavigate()
-  const { user,logout } = useContext(AuthContext)
+  const { user,logout,role } = useContext(AuthContext)
   const handleSignout=async()=>{
     logout()
 navigate('/login')
@@ -37,7 +37,7 @@ navigate('/login')
             </NavLink>
           </div>
           <span
-            className='text-lg font-semibold md:hidden cursor-pointer'
+            className='text-lg font-semibold lg:hidden cursor-pointer'
             onClick={() => setOpenNav(!openNav)}
           >
             <ImCross className='text-sm' />
@@ -46,7 +46,59 @@ navigate('/login')
 
         {/* <!-- Nav List --> */}
         <ul className='m-0 p-0'>
-          <li
+          {
+            role ==='admin'?(
+              <>
+                   <li
+            className={`flex items-center gap-2 px-2 py-2  rounded-md font-medium group ${
+              location.pathname === '/admin/dashboard'
+                ? 'bg-white border drop-shadow'
+                : ''
+            }`}
+          >
+            <NavLink
+              to={'/admin/dashboard'}
+              className={`flex items-center gap-2 text-decoration-none !text-slate-500   ${
+                location.pathname === '/dashboard/user' ? '!text-green-600' : ''
+              }`}
+            >
+              <AiFillHome
+                className={` ${
+                  location.pathname === '/admin/dashboard'
+                    ? 'text-green-500'
+                    : ''
+                }`}
+              />
+              Dashboard
+            </NavLink>
+          </li>
+               <li
+            className={`flex items-center gap-2 px-2 py-2  rounded-md font-medium group ${
+              location.pathname === '/admin/report'
+                ? 'bg-white border drop-shadow'
+                : ''
+            }`}
+          >
+            <NavLink
+              to={'/admin/report'}
+              className={`flex items-center gap-2 text-decoration-none !text-slate-500   ${
+                location.pathname === '/admin/report' ? '!text-green-600' : ''
+              }`}
+            >
+              <FaRegUser
+                className={` ${
+                  location.pathname === '/admin/report'
+                    ? 'text-green-500'
+                    : ''
+                }`}
+              />
+              User
+            </NavLink>
+          </li>
+              </>
+            ):(
+<>
+    <li
             className={`flex items-center gap-2 px-2 py-2  rounded-md font-medium group ${
               location.pathname === '/dashboard/user'
                 ? 'bg-white border drop-shadow'
@@ -94,6 +146,7 @@ navigate('/login')
               Upload File
             </NavLink>
           </li>
+
           <li
             className={`flex items-center gap-2 px-2 py-2  rounded-md font-medium group ${
               location.pathname === '/dashboard/history'
@@ -144,6 +197,11 @@ navigate('/login')
               Settings
             </NavLink>
           </li>
+</>
+            )
+          }
+      
+          
         </ul>
         <div className='space-y-2 text-sm fixed bottom-5'>
           <div className='flex items-center gap-3 px-2 py-1 text-gray-600 hover:text-gray-900 cursor-pointer '>

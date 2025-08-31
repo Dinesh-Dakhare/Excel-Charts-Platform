@@ -1,29 +1,37 @@
 // src/context/AuthContext.js
-import { createContext, useState } from "react";
-
+import { createContext, useState ,useEffect} from "react";
+import {jwtDecode} from "jwt-decode";
 // Create context
 export const AuthContext = createContext();
 
 // Create provider
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(() => localStorage.getItem("token") || null);
-  const [role, setRole] = useState(() => localStorage.getItem("role") || null);
+  const [role, setRole] = useState(null);
 const [user,setUser]= useState()
-console.log(
-  user
-);
+
+  useEffect(() => {
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        console.log(decoded.role);
+        setRole(decoded.role);   // role comes securely from JWT
+      } catch (err) {
+        console.error("Invalid token", err);
+        setRole(null);
+      }
+    }
+  }, [token]);
 
   const login = (token, user) => {
     localStorage.setItem("token", token);
-    localStorage.setItem("role", user.role);
     setToken(token);
-    setRole(user.role);
     setUser({...user,profileImageUrl:user.profileImageUrl})
   };
 
   const logout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("role");
+
     setToken(null);
     setRole(null);
   };

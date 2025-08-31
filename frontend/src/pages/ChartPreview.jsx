@@ -93,14 +93,14 @@ setFiles(res.data)
       pdf.save(`${files.filename}.pdf`);
       }
   return (
-    <div className='ml-64 min-h-screen mt-10'>
+    <div className='lg:ml-64 min-h-screen mt-10 w-full'>
       <NavLink to={'/dashboard/history'} className='ms-10'>
         <span className='text-2xl font-bold rounded-full cursor-pointer size-8 border  flex justify-center items-center'><IoMdArrowDropleft className='size-7' /></span>
       </NavLink>
       <div className='flex flex-col justify-center items-center w-full'>
 
 
-<div className=' flex justify-start w-[60rem] p-4 '>
+<div className=' flex justify-start max-w-[60rem] p-4 w-full '>
       <div >
                 <div className='flex items-center gap-2'>
               <button
@@ -120,7 +120,7 @@ setFiles(res.data)
 </div>
 
 {/* chartrender */}
-    <div className='flex items-center justify-center'>
+    <div className='flex items-center justify-center w-full'>
 {/* <ChartRender/> */}
 
 {

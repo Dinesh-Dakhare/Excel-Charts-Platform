@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 import { config } from 'dotenv'
 import router from './routes/authRoutes.js'
 import charts from './routes/chartRoutes.js'
+import admin from './routes/adminRoutes.js';
 config()
 
 const __filename = fileURLToPath(import.meta.url);
@@ -19,6 +20,8 @@ app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 app.use('/api/v1/auth',router)
 app.use('/api/v1/chart',charts)
 
+
+app.use('/api/v1/admin',admin)
 // MongoDB connection
 connectDb()
 

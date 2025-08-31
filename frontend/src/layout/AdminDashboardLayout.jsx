@@ -2,10 +2,10 @@ import React from 'react'
 import NavBar from '../components/NavBar.jsx'
 import { FaBarsStaggered } from 'react-icons/fa6'
 import { useState } from 'react'
-import UploadDoc from '../pages/UploadDoc.jsx'
+
 import { Outlet } from 'react-router-dom'
 
-const UserDashboardLayout = () => {
+const AdminDashboardLayout = () => {
   const [openNav, setOpenNav] = useState(true)
 
   return (
@@ -26,4 +26,4 @@ const UserDashboardLayout = () => {
   )
 }
 
-export default UserDashboardLayout
+export default AdminDashboardLayout
