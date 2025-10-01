@@ -1,4 +1,4 @@
-<img width="1915" height="1044" alt="image" src="https://github.com/user-attachments/assets/e493f05f-7b65-41be-971f-ee2823b71d1c" /># Excel-Analytics-Platform
+# Excel-Analytics-Platform
 A powerful platform to upload Excel files (.xls/.xlsx), analyze data, and generate interactive 2D/3D charts. Users can choose X and Y axes from column headers, select chart types, and download graphs. Each user's upload and analysis history is saved in their dashboard. Admins can manage users and monitor data usage.
 
 Overview
@@ -49,15 +49,24 @@ Frontend:
 
 Login
 <img width="1915" height="1044" alt="image" src="https://github.com/user-attachments/assets/8c355ec7-1d47-41bc-aa4d-d19b2df04ddf" />
-
-
-
-
-
-
 Register
+<img width="1919" height="1044" alt="image" src="https://github.com/user-attachments/assets/2ca50614-ae43-4a18-bdf1-459d08cda091" />
 Home
+<img width="1884" height="1048" alt="image" src="https://github.com/user-attachments/assets/5c89f85c-d2f2-4698-953f-86e187e9286c" />
+Upload-page
+<img width="1897" height="1040" alt="image" src="https://github.com/user-attachments/assets/a5aac06b-cd7d-49ba-a109-67395d5ae414" />
+chart-select
+<img width="1898" height="1047" alt="image" src="https://github.com/user-attachments/assets/fa8f9c7e-eb7c-463e-8ae6-f8a91f60f919" />
 
+<img width="1898" height="1041" alt="image" src="https://github.com/user-attachments/assets/f2575238-3393-48d0-94b2-ce58397b72eb" />
+Generate-Ai-summary
+<img width="1894" height="1044" alt="image" src="https://github.com/user-attachments/assets/bf43e0a9-800e-489b-8870-93ea829490d0" />
+history page
+<img width="1894" height="1048" alt="image" src="https://github.com/user-attachments/assets/349933c7-88f9-40d3-9564-30c7d86a74c5" />
+Setting-page
+<img width="1893" height="1037" alt="image" src="https://github.com/user-attachments/assets/11fa3a72-90af-476c-b89a-f76090763f72" />
+Dashboard-page
+<img width="1893" height="1048" alt="image" src="https://github.com/user-attachments/assets/6c664c10-66ca-4707-940b-2e1f6cfba82a" />
 
 
 
