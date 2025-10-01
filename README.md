@@ -1,9 +1,99 @@
-# Excel-Analytics-Platform
+<img width="1915" height="1044" alt="image" src="https://github.com/user-attachments/assets/e493f05f-7b65-41be-971f-ee2823b71d1c" /># Excel-Analytics-Platform
 A powerful platform to upload Excel files (.xls/.xlsx), analyze data, and generate interactive 2D/3D charts. Users can choose X and Y axes from column headers, select chart types, and download graphs. Each user's upload and analysis history is saved in their dashboard. Admins can manage users and monitor data usage.
 
 Overview
 The auth routes are responsible for handling user authentication, including registration and login.
 
+------------------------------------------------------------------------------------------------------------->
+
+📂 Project Structure
+
+excel-to-charts/
+│── backend/        # Express.js + MongoDB backend
+│── frontend/       # React frontend (with TailwindCSS)
+│── README.md       # Documentation
+
+
+⚙️ Features
+
+📁 Upload Excel files
+📊 Convert Excel data into interactive charts
+🖼️ Export charts as PNG
+📑 Export charts as PDF
+🔒 User authentication (login/register)
+🌐 Easy-to-use dashboard
+
+
+🛠️ Tech Stack
+
+:: Frontend: React, TailwindCSS, Chart.js (or Recharts)
+:: Backend: Node.js, Express.js
+:: Database: MongoDB (Mongoose)
+:: Other Tools: Multer (file upload), XLSX (Excel parsing), jsPDF (PDF export)
+
+2. Install dependencies
+Backend:
+   cd backend
+   npm install
+  npm run start
+ 
+
+Frontend:
+   cd frontend
+   npm install
+   npm run dev
+   
+   Now open 👉 http://localhost:3000
+
+📸 Screenshots
+
+Login
+<img width="1915" height="1044" alt="image" src="https://github.com/user-attachments/assets/8c355ec7-1d47-41bc-aa4d-d19b2df04ddf" />
+
+
+
+
+
+
+Register
+Home
+
+
+
+
+
+
+
+
+📖 Usage
+
+1.Register/Login as a user
+
+2.Upload an Excel file (.xlsx / .xls)
+
+3.View automatically generated charts
+
+4.Export them as PDF or PNG
+
+🚀 Roadmap / Future Enhancements
+
+ :: Support Google Sheets import
+
+ :: Add more chart types (Pie, Line, Scatter, etc.)
+
+ :: Deploy on Vercel (Frontend) & Render/Heroku (Backend)
+
+ :: Dark mode UI
+
+👤 Author
+
+Dinesh Dakhare
+
+GitHub: https://github.com/Dinesh-Dakhare
+
+LinkedIn: https://www.linkedin.com/in/dinesh-dakhare/
+
+------------------------------------------------------------------------------------------------------------->
 Auth Routes
 
    POST /register
@@ -111,4 +201,6 @@ Auth Routes
      "role": "user"
     }
    }
+
+
 
